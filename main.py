@@ -38,12 +38,12 @@ app = FastAPI()
 
 @app.post("/register", status_code=201)
 async def register(user: UserCreate, db: Session = Depends(get_db)):
-    if (
-        db.query(Usuario)
-        .filter((Usuario.cpf == user.cpf) | (Usuario.email == user.email))
-        .first()
-    ):
-        raise HTTPException(status_code=409, detail="CPF ou email já cadastrado.")
+    # if (
+    #     db.query(Usuario)
+    #     .filter((Usuario.cpf == user.cpf) | (Usuario.email == user.email))
+    #     .first()
+    # ):
+    #     raise HTTPException(status_code=409, detail="CPF ou email já cadastrado.")
     password_hash = get_password_hash(user.password)
     novo_usuario = Usuario(
         nome_completo=user.nome_completo,
@@ -55,13 +55,5 @@ async def register(user: UserCreate, db: Session = Depends(get_db)):
     db.add(novo_usuario)
     db.commit()
     db.refresh(novo_usuario)
-    return {
-        "id_usuario": novo_usuario.id_usuario,
-        "nome_completo": novo_usuario.nome_completo,
-        "cpf": novo_usuario.cpf,
-        "email": novo_usuario.email,
-        "data_nascimento": novo_usuario.data_nascimento,
-        "is_active": novo_usuario.is_active,
-        "is_admin": novo_usuario.is_admin,
-        "data_criacao": novo_usuario.data_criacao,
-    }
+    return novo_usuario
+
