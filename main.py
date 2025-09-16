@@ -60,3 +60,8 @@ async def login(user: UserLogin, db: Session = Depends(get_db)):
     )
     return {"access_token": access_token, "token_type": "bearer"}
 
+# implementar a parte de disparo de email
+
+@app.get("/disparar_emails")
+def disparar_emails():
+    pass
