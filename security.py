@@ -5,8 +5,11 @@ import jwt
 from sqlalchemy.orm import Session
 from models import Usuario
 from fastapi.security import OAuth2PasswordBearer
+import os 
 
-
+SECRET_KEY = os.getenv("SECRET_KEY")
+ACCESS_TOKEN_EXPIRE_MINUTES = os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES")
+ALGORITHM = os.getenv("ALGORITHM")
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 def verify_token(token: str):
@@ -50,6 +53,4 @@ def get_current_user(
     return user
 
 
-SECRET_KEY = "supersecretkey"
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 60
+

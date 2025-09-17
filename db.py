@@ -1,7 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
 from models import Model
-SQLALCHEMY_DATABASE_URL = 'mysql+mysqlconnector://root:12345678@127.0.0.1:3306/hackathon'
+import os 
+SQLALCHEMY_DATABASE_URL = os.getenv("SQLALCHEMY_DATABASE_URL")
+
 # SQLALCHEMY_DATABASE_URL = 'sqlite:///./test.db'
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=True)
