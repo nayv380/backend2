@@ -11,6 +11,8 @@ from models import Usuario
 from schemas import UserCreate, UserLogin, UserOut as User
 from security import create_access_token, get_current_user
 from passlib.context import CryptContext
+from fastapi.middleware.cors import CORSMiddleware
+
 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -23,8 +25,21 @@ def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
 
 app = FastAPI()
+origins = [
+        "http://localhost",
+        "http://localhost:8080",
+        # Add other allowed origins here
+    ]
 
-range(1, 4)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
 
 @app.post("/register", status_code=201)
 async def register(user: UserCreate, db: Session = Depends(get_db)):
@@ -62,6 +77,6 @@ async def login(user: UserLogin, db: Session = Depends(get_db)):
 
 # implementar a parte de disparo de email
 
-@app.get("/disparar_emails")
-def disparar_emails():
+@app.get("/recuperarsenha/{cpf}")
+def recover_password(cpf:str):
     pass
