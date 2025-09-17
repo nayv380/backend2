@@ -57,4 +57,4 @@ O projeto utiliza MySQL, mas pode ser facilmente adaptado para SQLite ou outros 
 
 ## Autor
 
-Desenvolvido por mariac1995,Nayara ventura, Lucas,Pablo Marcelino,Vitor anastácio,Paula tejando, Kelly guiça, Bruna silva,Ricardo Wemerson e nossos mentores João Pedro Sales e Marcola Violento SImôes, Davi professor, WalTI professor e Gabriel Professor para o Hackathon.
+Desenvolvido por mariac1995,Nayara ventura, Lucas,Pablo Marcelino,Vitor anastácio,Paula tejando, Kelly guiça, Bruna silva,Ricardo Wemerson e nossos mentores João Pedro Sales e Marcos SImôes, Davi professor, WalTI professor e Gabriel Professor para o Hackathon.

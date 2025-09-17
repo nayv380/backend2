@@ -1,8 +1,10 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
 from models import Model
-SQLALCHEMY_DATABASE_URL = 'mysql+mysqlconnector://root:pablo136589.@127.0.0.1:3306/hackathon'
-# SQLALCHEMY_DATABASE_URL = 'sqlite:///./test.db'
+
+import os 
+SQLALCHEMY_DATABASE_URL = os.getenv("SQLALCHEMY_DATABASE_URL")
+
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=True)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
