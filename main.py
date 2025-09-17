@@ -26,8 +26,7 @@ def verify_password(plain_password, hashed_password):
 
 app = FastAPI()
 origins = [
-        "http://localhost",
-        "http://localhost:8080",
+        "*"
         # Add other allowed origins here
     ]
 
