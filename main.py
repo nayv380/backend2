@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Depends
+from typing import List
 from fastapi import HTTPException
 # import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
@@ -82,3 +83,10 @@ async def login(user: UserLogin, db: Session = Depends(get_db)):
 @app.get("/recuperarsenha/{cpf}")
 def recover_password(cpf:str):
     pass
+#LEMBRAR DE CONFERIR OS NOMES DAS ROTAS
+@app.get("/usuarios/por_profissao/", response_model=List[User])
+async def get_usuarios_por_profissao(profissao: str, db: Session = Depends(get_db)):
+    usuarios = db.query(Usuario).filter(Usuario.profissao == profissao).all()
+    if not usuarios:
+        raise HTTPException(status_code=404, detail=f"Nenhum usuário encontrado com a profissão: {profissao}")
+    return usuarios

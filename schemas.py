@@ -28,3 +28,13 @@ class UserOut(BaseModel):
 
     class Config:
         orm_mode = True
+
+    class dev_users(BaseModel):
+        nome_completo: str
+        cpf: str
+        email: EmailStr
+        profissao: str
+        data_nascimento: datetime = None
+
+        class Config:
+            orm_mode = True
