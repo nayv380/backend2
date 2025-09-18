@@ -49,12 +49,15 @@ async def register(user: UserCreate, db: Session = Depends(get_db)):
     # ):
     #     raise HTTPException(status_code=409, detail="CPF ou email já cadastrado.")
     password_hash = get_password_hash(user.password)
+
     novo_usuario = Usuario(
         nome_completo=user.nome_completo,
         cpf=user.cpf,
         email=user.email,
         password_hash=password_hash,
-        data_nascimento=user.data_nascimento,
+        profissao=user.profissao,
+        data_nascimento=user.data_nascimento
+   
     )
     db.add(novo_usuario)
     db.commit()

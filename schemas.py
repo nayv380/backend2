@@ -7,6 +7,7 @@ class UserCreate(BaseModel):
     cpf: str
     email: EmailStr
     password: str
+    profissao: str
     data_nascimento: datetime = None
 
 
