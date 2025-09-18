@@ -74,6 +74,7 @@ DATABASE_URL="mysql+mysqlconnector://usuario:senha@localhost:3306/hackathon"
    uvicorn main:app --reload --port 8001
    ```
 
+
 ## Endpoints Principais
 
 - `POST /auth/register` — Cadastro de novo usuário
@@ -84,7 +85,82 @@ DATABASE_URL="mysql+mysqlconnector://usuario:senha@localhost:3306/hackathon"
 - `POST /auth/forgot-password` — Recuperação de senha por e-mail
 - `POST /auth/reset-password` — Redefinição de senha
 - `GET /usuarios/por_profissao/` — Busca de usuários por profissão
-- CRUD de projetos e blog
+
+### Endpoints de Projetos
+- `GET /projects` — Listar todos os projetos
+- `GET /projects/search?q=termo` — Buscar projetos por termo
+- `GET /projects/{project_id}` — Detalhes de um projeto
+- `POST /projects` — Criar novo projeto
+- `PUT /projects/{project_id}` — Atualizar projeto
+- `DELETE /projects/{project_id}` — Excluir projeto
+- `GET /users/{user_id}/projects` — Listar projetos de um usuário
+
+### Endpoints de Blog
+- `GET /blog/posts` — Listar posts do blog
+- `GET /blog/posts/{post_id}` — Detalhes de um post
+
+## Modelos do Banco
+
+### Usuário
+- nome_completo, cpf, email, password_hash, profissao, data_nascimento, is_active, is_admin, data_criacao, data_atualizacao
+
+### Projeto
+- titulo, descricao, tecnologias, link, imagem, data_inicio, data_conclusao, usuario_id, data_criacao, data_atualizacao
+
+### BlogPost
+- titulo, conteudo, autor_id, data_publicacao, imagem
+
+## Migração do Banco
+Para atualizar as tabelas após mudanças nos modelos, recomenda-se usar Alembic:
+```bash
+pip install alembic
+alembic init alembic
+# Configure alembic.ini e env.py
+alembic revision --autogenerate -m "Criação inicial"
+alembic upgrade head
+```
+
+## Exemplo de Uso
+
+### Cadastro de Projeto
+```http
+POST /projects
+{
+  "titulo": "Meu Portfólio",
+  "descricao": "Site pessoal com projetos",
+  "tecnologias": "Python, FastAPI, SQLAlchemy",
+  "link": "https://meuportifolio.com",
+  "imagem": "https://meuportifolio.com/img.png",
+  "data_inicio": "2025-01-01T00:00:00",
+  "data_conclusao": "2025-02-01T00:00:00"
+}
+```
+
+### Cadastro de Post no Blog
+```http
+POST /blog/posts
+{
+  "titulo": "Como usar FastAPI",
+  "conteudo": "FastAPI é um framework moderno...",
+  "imagem": "https://meublog.com/img.png"
+}
+```
+
+## Dicas de Deploy
+- Use serviços como Heroku, Vercel, Railway ou servidores próprios.
+- Configure variáveis de ambiente no serviço de hospedagem.
+- Use HTTPS em produção.
+- Gere e mantenha backups do banco de dados.
+
+## Observações Técnicas
+- O envio de e-mail utiliza SMTP do Gmail (veja `utils2.py`).
+- As variáveis de ambiente são carregadas automaticamente com `python-dotenv`.
+- O projeto está pronto para deploy e integração com frontend.
+- Expanda facilmente com novos endpoints e regras de negócio.
+
+## Autores
+
+Desenvolvido por mariac1995, Nayara Ventura, Lucas, Pablo Marcelino, Vitor Anastácio, Paula Tejando, Kelly Guiça, Bruna Silva, Ricardo Wemerson e nossos mentores João Pedro Sales, Marcos Simões, Davi professor, WalTI professor e Gabriel professor para o Hackathon.
 
 ## Autenticação
 

@@ -29,12 +29,42 @@ class UserOut(BaseModel):
     class Config:
         from_attributes = True
 
-    class dev_users(BaseModel):
-        nome_completo: str
-        cpf: str
-        email: EmailStr
-        profissao: str
-        data_nascimento: datetime = None
+
+    # Schemas para projetos
+    class ProjectBase(BaseModel):
+        titulo: str
+        descricao: str = None
+        tecnologias: str = None
+        link: str = None
+        imagem: str = None
+        data_inicio: datetime = None
+        data_conclusao: datetime = None
+
+    class ProjectCreate(ProjectBase):
+        pass
+
+    class ProjectOut(ProjectBase):
+        id: int
+        usuario_id: int = None
+        data_criacao: datetime
+        data_atualizacao: datetime
+
+        class Config:
+            from_attributes = True
+
+    # Schemas para posts de blog
+    class BlogPostBase(BaseModel):
+        titulo: str
+        conteudo: str
+        imagem: str = None
+
+    class BlogPostCreate(BlogPostBase):
+        pass
+
+    class BlogPostOut(BlogPostBase):
+        id: int
+        autor_id: int = None
+        data_publicacao: datetime
 
         class Config:
             from_attributes = True
