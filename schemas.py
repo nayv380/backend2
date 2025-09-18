@@ -27,7 +27,7 @@ class UserOut(BaseModel):
     data_atualizacao: datetime
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
     class dev_users(BaseModel):
         nome_completo: str
@@ -37,4 +37,4 @@ class UserOut(BaseModel):
         data_nascimento: datetime = None
 
         class Config:
-            orm_mode = True
+            from_attributes = True
