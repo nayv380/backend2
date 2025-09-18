@@ -1,10 +1,9 @@
 from fastapi import FastAPI, Depends, UploadFile, File
 from typing import List, Optional
 from fastapi import HTTPException, status
-# import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
-# from passlib.context import CryptContext
-# from jose import jwt, JWTError
+from passlib.context import CryptContext
+from jose import jwt, JWTError
 from datetime import timedelta, datetime
 from pydantic import BaseModel, EmailStr
 from db import get_db
