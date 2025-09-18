@@ -1,3 +1,37 @@
+# Backend
+
+Este projeto é uma API desenvolvida com FastAPI para autenticação, gerenciamento de usuários, projetos e blog.
+
+## Principais funcionalidades
+- Cadastro e login de usuários
+- Recuperação e redefinição de senha
+- Perfil do usuário (GET, PUT, foto de perfil)
+- Gerenciamento de projetos (CRUD)
+- Endpoints de blog
+- Busca de usuários por profissão
+
+## Como rodar
+1. Instale as dependências:
+   ```bash
+   pip install -r requirements.txt
+   ```
+2. Execute o servidor:
+   ```bash
+   uvicorn main:app --reload --port 8001
+   ```
+
+## Estrutura de pastas
+- `main.py`: Endpoints principais
+- `models.py`: Modelos SQLAlchemy
+- `schemas.py`: Schemas Pydantic
+- `db.py`: Configuração do banco
+- `security.py`: Autenticação JWT
+- `utils.py`/`utils2.py`: Funções auxiliares
+
+## Observações
+- Configure as variáveis de ambiente para o JWT e banco de dados conforme necessário.
+- O envio de e-mail utiliza SMTP do Gmail (veja `utils2.py`).
+- O projeto está pronto para deploy e integração com frontend.
 # Backend Hackathon
 
 Este projeto é uma API backend desenvolvida em Python utilizando FastAPI, SQLAlchemy e autenticação JWT. O objetivo é fornecer endpoints seguros para cadastro, login e gerenciamento de usuários, ideal para aplicações web e mobile que precisam de autenticação e persistência de dados.
